@@ -6,7 +6,7 @@
 ###############################################################################
 # Set default behavior for command prompt diff.
 #
-# This is need for earlier builds of msysgit that does not have it on by
+# This is needed for earlier builds of msysgit that does not have it on by
 # default for csharp files.
 # Note: This is only used by command line
 ###############################################################################
@@ -61,3 +61,22 @@
 #*.PDF   diff=astextplain
 #*.rtf   diff=astextplain
 #*.RTF   diff=astextplain
+
+###############################################################################
+# Language settings for GitHub language detection
+###############################################################################
+# HTML files
+*.html linguist-language=HTML
+
+# CSS files
+*.css linguist-language=CSS
+
+# JavaScript files
+*.js linguist-language=JavaScript
+
+# C# files
+*.cs linguist-language=CSharp
+
+# ASP.NET Core MVC files (Razor files and C# views)
+*.cshtml linguist-language=HTML
+*.razor linguist-language=HTML
