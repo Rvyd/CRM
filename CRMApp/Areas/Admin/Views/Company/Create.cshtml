@@ -1,0 +1,69 @@
+@model CompanyDtoForInsertion
+
+
+<div class="text-center mb-4">
+    <h1 class="display-4" style="color:#992441">Şirket Bilgileri</h1>
+</div>
+
+<form method="post" asp-action="Create" enctype="multipart/form-data" class="d-flex flex-column align-items-center">
+    <div class="text-danger mb-3" asp-validation-summary="All"></div>
+    <div class="container">
+        <div class="row">
+            <!-- Left column with company details -->
+            <div class="col-md-8">
+                <div class="form-group mb-3">
+                    <label asp-for="CompanyName" class="form-label">Firma Adı</label>
+                    <input asp-for="CompanyName" class="form-control" />
+                </div>
+                <div class="form-group mb-3">
+                    <label asp-for="CompanyPhone" class="form-label">Firma İletişim Numarası</label>
+                    <input asp-for="CompanyPhone" class="form-control" />
+                </div>
+                <div class="form-group mb-3">
+                    <label asp-for="CompanyAddress" class="form-label">İş Yeri Adresiniz</label>
+                    <input asp-for="CompanyAddress" class="form-control" />
+                </div>
+                <div class="form-group mb-3">
+                    <label asp-for="CompanyWebSite" class="form-label">İş Yeri Web Sayfası</label>
+                    <input asp-for="CompanyWebSite" class="form-control" />
+                </div>
+            </div>
+            <!-- Right column with company logo -->
+            <div class="col-md-4 text-center">
+                <div class="form-group mb-3">
+                    <label class="form-label">Şirket Logo</label>
+                    <div class="border border-light rounded p-3">
+                        <img id="logoPreview" src="/images/download-image-icon.png" alt="Şirket Logo" class="img-thumbnail mb-3" style="max-height: 250px; max-width: 100%;" />
+                        <label asp-for="CompanyLogoUrl"></label>
+                        <input name="file" type="file" class="form-control mt-3" onchange="previewLogo(event)" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col text-center">
+                <div class="btn-group">
+                   <button class="btn btn-outline-success" asp-action="Index">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        Geri
+                    </button>
+                    <button class="btn btn-success" type="submit">
+                        <i class="fa fa-save"></i>
+                        Kaydet
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script>
+    function previewLogo(event) {
+        var reader = new FileReader();
+        reader.onload = function(){
+            var output = document.getElementById('logoPreview');
+            output.src = reader.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>

@@ -1,0 +1,61 @@
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Open Sans', sans-serif;
+            background: url('/images/background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            color: #eeebeb;
+            padding-left: 50px; 
+        }
+        .container {
+            text-align: left;
+            max-width: 500px; 
+        }
+        .container h1 {
+            font-size: 120px;
+            margin: 0;
+        }
+        .container h2 {
+            font-size: 36px;
+            margin: 10px 0;
+        }
+        .container p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        .container p strong {
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>404</h1>
+        <h2>Buraya nasıl geldin?</h2>
+        <p><strong>Bu sayfaya iznin yok!</strong></p>
+        <p>İzinlerinizi kontrol edin.</p>
+        <a class="btn btn-outline-primary" asp-controller="Home" asp-action="Index">Geri dön</a> 
+    </div>
+
+
+      
+
+
+</body>
+</html>
+

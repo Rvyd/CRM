@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Dashboard</title>
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+	<style>
+		.card-custom {
+			border-radius: 15px;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+		}
+
+		.bg-custom {
+			background: linear-gradient(135deg, #f45d48 0%, #e11e7a 100%);
+			color: white;
+			padding: 20px;
+			border-radius: 15px;
+			margin-bottom: 30px;
+		}
+
+		.card-body-custom {
+			padding: 20px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			text-align: center;
+		}
+
+		.card-body-custom img {
+			width: 50px;
+			height: 50px;
+			margin-bottom: 15px;
+		}
+
+		.card-subtitle {
+			font-size: 1.2rem;
+			font-weight: 500;
+		}
+
+		.card-title {
+			font-size: 2rem;
+			font-weight: 700;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div class="container mt-5">
+		<div class="col-12 bg-custom">
+			<h2>Özet Bilgi</h2>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="card card-custom">
+						<div class="card-body card-body-custom">
+							<img src="/images/building.png" alt="Icon">
+							<h1 class="display-6" style="color:#992441">Firma Sayısı</h1>
+							<h3 class="card-title text-danger display-2 ">
+								@await Component.InvokeAsync("CompanySummary")
+							</h3>
+							<div class="d-grid gap-2 d-md-block mt-4">
+								<a asp-controller="Company" asp-action="Index"
+									class="btn btn-danger text-white me-2">Görüntüle</a>
+								<a asp-controller="Company" asp-action="Create" class="btn btn-light text-dark">Ekle</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="card card-custom">
+						<div class="card-body card-body-custom">
+							<img src="/images/group.png" alt="Icon">
+							<h1 class="display-6" style="color:#992441">Çalışan Sayısı</h1>
+							<h6 class="card-title text-danger display-2">
+								@await Component.InvokeAsync("UserSummary")
+							</h6>
+							<div class="d-grid gap-2 d-md-block mt-4">
+								<a asp-controller="User" asp-action="Index"
+									class="btn btn-danger text-white me-2">Görüntüle</a>
+								<a asp-controller="User" asp-action="Create" class="btn btn-light text-dark">Ekle</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="card card-custom">
+						<div class="card-body card-body-custom">
+							<img src="/images/employee.png" alt="Icon">
+							<h1 class="display-6" style="color:#992441">Role Sayısı</h1>
+							<h6 class="card-title text-danger display-2">
+								@await Component.InvokeAsync("RoleSummary")
+							</h6>
+							<div class="d-grid gap-2 d-md-block mt-4">
+								<a asp-controller="Role" asp-action="Index"
+									class="btn btn-danger text-white me-2">Görüntüle</a>
+								<a asp-controller="Role" asp-action="AddRole" class="btn btn-light text-dark">Ekle</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class="card card-custom">
+						<div class="card-body card-body-custom">
+							<img src="/images/chat.png" alt="Icon">
+							<h5 class="card-subtitle">Görüşmeler</h5>
+							<div class="container mt-5">
+								<div class="text-center mb-4">
+									<h1 class="display-6" style="color:#992441">Görüşmeler</h1>
+								</div>
+								<div class="row">
+									<!-- İlk Kart -->
+									<div class="col-md-4 mb-4">
+										<div class="card card-custom text-center h-100">
+											<div class="card-body card-body-custom">
+												<img src="/images/correct.png" alt="Icon" class="mb-3"
+													style="width: 50px;">
+												<h4 class="card-title text-dark mb-2">Tamamlanan</h4>
+												<h1 class="card-subtitle text-danger display-2">
+													@await Component.InvokeAsync("DoneTalkSummary")
+												</h1>
+												<div class="d-grid gap-2 d-md-block mt-4">
+													<a asp-controller="Talk" asp-action="Index"
+														class="btn btn-danger text-white me-2">Görüntüle</a>
+													<a href="/Company/Index" class="btn btn-light text-dark">Ekle</a>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<!-- İkinci Kart -->
+									<div class="col-md-4 mb-4">
+										<div class="card card-custom text-center h-100">
+											<div class="card-body card-body-custom">
+												<img src="/images/planning.png" alt="Icon" class="mb-3"
+													style="width: 50px;">
+												<h6 class="card-title text-dark mb-2">Planlanan Randevu </h6>
+												<h6 class="card-subtitle text-danger display-2">
+													@await Component.InvokeAsync("PlannedTalkSummary")
+												</h6>
+												<div class="d-grid gap-2 d-md-block mt-4">
+													<a asp-controller="Role" asp-action="Index"
+														class="btn btn-danger text-white me-2">Görüntüle</a>
+													<a href="/Company/Index" class="btn btn-light text-dark">Ekle</a>
+
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<!-- Üçüncü Kart -->
+									<div class="col-md-4 mb-4">
+										<div class="card card-custom text-center h-100">
+											<div class="card-body card-body-custom">
+												<img src="/images/planlanmadı.png" alt="Icon" class="mb-3"
+													style="width: 50px;">
+												<h6 class="card-title text-dark mb-2">Planlanmayan Randevu</h6>
+												<h6 class="card-subtitle text-danger display-2">
+													@await Component.InvokeAsync("UnPlannedTalkSummary")
+												</h6>
+												<div class="d-grid gap-2 d-md-block mt-4">
+													<a asp-controller="Role" asp-action="Index"
+														class="btn btn-danger text-white me-2">Görüntüle</a>
+													<a href="/Company/Index" class="btn btn-light text-dark">Ekle</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class="card card-custom">
+						<div class="card-body card-body-custom">
+							<img src="/images/text.png" alt="Icon" class="img-fluid">
+							<h1 class="h3" style="color:#992441">Bugün Yapılan Görüşmeler</h1>
+							<div class="card-title text-danger h5">
+								@await Component.InvokeAsync("TodayScheduledTalks")
+							</div>
+							<div class="d-grid gap-2 d-md-block mt-4">
+								<a asp-controller="Talk" asp-action="Index"
+									class="btn btn-danger text-white me-2">Görüntüle</a>
+								<a asp-controller="Talk" asp-action="Create" class="btn btn-light text-dark">Ekle</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+			</div>
+		</div>
+	</div>
+
+	</div>
+
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

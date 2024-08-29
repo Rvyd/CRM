@@ -1,0 +1,64 @@
+@model CompanyDtoForUpdate
+
+<div class="text-center">
+    <div class="display-4" style="color:#992441">Güncelleme</div>
+</div>
+
+<!--veri işlemek için form kullanılır-->
+
+<!-- Save işlemi yapabilmek için method belirledik-->
+<form method="post" asp-action="Update" enctype="multipart/form-data">
+    <div class="text-danger" asp-validation-summary="All"></div>
+
+    <input type="hidden" asp-for="CompanyId" /> <!--id alanı ekranda görünmeyecek ama servise gönderilecek-->
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Left column with company details -->
+            <div class="col-md-8">
+                <div class="from-group my-6">
+                    <label asp-for="CompanyName" class="form-label">Firma Adı</label>
+                    <input asp-for="CompanyName" class="form-control" />
+                </div>
+                <div class="from-group my-3">
+                    <label asp-for="CompanyPhone" class="form-label">Firma İletişim Numarası</label>
+                    <input asp-for="CompanyPhone" class="form-control" />
+                </div>
+                <div class="from-group my-3">
+                    <label asp-for="CompanyAddress" class="form-label">İş Yeri Adresiniz</label>
+                    <input asp-for="CompanyAddress" class="form-control" />
+                </div>
+                <div class="from-group my-3">
+                    <label asp-for="CompanyWebSite" class="form-label">İş Yeri Web Sayfası</label>
+                    <input asp-for="CompanyWebSite" class="form-control" />
+                </div>
+            </div>
+            <!-- Right column with company logo -->
+            <div class="col-md-4 text-center">
+                <div class="from-group my-3">
+                    <label class="form-label">Şirket Logo</label>
+                    <div class="border border-light rounded p-3">
+                        <img class="rounded shadow" height="150" width="150" src="/@Model?.CompanyLogoUrl" />
+                    </div>
+                    <div class="from-group my-3">
+                        <label asp-for="CompanyLogoUrl"></label>
+                        <input name="file" type="file" class="form-control" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col text-center">
+                <div class="btn-group">
+                    <button class="btn btn-outline-success" asp-action="Index">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        Geri
+                    </button>
+                    <button class="btn btn-success" type="submit">
+                        <i class="fa-solid fa-arrow-rotate-right"></i>
+                        Kaydet
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

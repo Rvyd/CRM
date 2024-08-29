@@ -1,0 +1,42 @@
+@model IEnumerable<Company>
+<div class="text-center">
+  <div class="display-4" style="color:#992441">Firmalar</div>
+  <table class="table table-striped table-hover"> <!--satırlar arası gezerken renk olması-->
+    <thead> <!--Head kısmı-->
+      <tr> <!--table row-->
+        <th>ID</th>
+        <th> Logo</th>
+        <th>Adı</th>
+        <th> İletişim Numarası</th>
+        <th> Adresi</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach (Company company in Model)
+      {
+        <tr>
+          <td>@company.CompanyId</td>
+          <td>
+            <img class="border border-light rounded" src="/@company?.CompanyLogoUrl" alt="/@company?.CompanyName"
+              height="100" width="100" />
+          </td>
+          <td>@company!.CompanyName</td>
+          <td>@company.CompanyPhone</td>
+          <td>@company.CompanyAddress</td>
+          <td>
+            <div class="btn-group my-6">
+              <a class="btn" style="background-color:#992441; color: white;" href="@company.CompanyWebSite">
+                <i class="fa-solid fa-search"></i>
+                Daha fazla bilgi
+              </a>
+               <a class="btn  ml-2" style="background-color:#992441; color: white;" asp-action="CreateTalk" asp-route-id="@company.CompanyId" >
+                <i class="fa-solid fa-plus"></i>
+                Görüşme ekle
+              </a>
+            </div>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

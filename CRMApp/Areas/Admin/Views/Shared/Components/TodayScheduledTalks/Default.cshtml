@@ -1,0 +1,34 @@
+@model List<Talk>
+
+<div class="col-md-12 mt-4">
+    <table class="table table-bordered table-hover">
+        <thead style="background-color: #e26e8b; color: white;">
+            <tr>
+                <th>Firma</th>
+                <th>Hakkkında</th>
+                <th>İçerik</th>
+                <th>Durum</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Count > 0)
+            {
+                @foreach (var talk in Model)
+                {
+                    <tr>
+                        <td>@talk.CompanyName</td>
+                        <td>@talk.TalkName</td>
+                        <td>@talk.Explanation</td>
+                        <td>@talk.State</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="4"><h6>Bugün planlanmış bir görüşme bulunmamaktadır.</h6></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

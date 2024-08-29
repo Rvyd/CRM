@@ -1,0 +1,134 @@
+@model List<IGrouping<int, Talk>>
+
+<div class="container">
+    <div class="row g-4">
+        @foreach (var group in Model)
+        {
+            var firstTalk = group.FirstOrDefault();
+            var companyId = group.Key;
+            <div class="col-12 mb-4">
+                <div class="card">
+                    <div class="card-header" style="background-color:#912c45; color: white;">
+                        <h4 class="font-weight-bold">@firstTalk.CompanyName</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="company-logo-container">
+                                <img src="/@firstTalk.CompanyLogoUrl" class="company-logo" alt="Company Logo">
+                            </div>
+                            <div style="flex-grow: 1;">
+                                <div class="mytabs">
+                                    @foreach (var talk in group)
+                                    {
+                                        var talkIndex = group.ToList().IndexOf(talk);
+                                        <input type="radio" id="tab-@companyId-@talkIndex" name="mytabs-@companyId" @(talkIndex
+                                               == 0 ? "checked" : "")>
+                                        <label for="tab-@companyId-@talkIndex">@talk.TalkName</label>
+                                        <div class="tab">
+                                            <h2>@talk.TalkName</h2>
+                                            <div class="list-group-item">
+                                                <div class="row">
+                                                    <p class="card-text mr-5">
+                                                        <span style="font-weight: bold;">Başlangıç:</span> @talk.StartDate
+                                                    </p>
+                                                    <p class="card-text mr-5">
+                                                        <span style="font-weight: bold;">Bitiş:</span> @talk.FinishDate
+                                                    </p>
+                                                </div>
+                                                <div class="row my-3">
+                                                    <p class="card-text mr-5">
+                                                        <span style="font-weight: bold;">Başlangıç Saati:</span> @talk.StartHour
+                                                    </p>
+                                                    <p class="card-text mr-5">
+                                                        <span style="font-weight: bold;">Bitiş Saati:</span> @talk.FinishHour
+                                                    </p>
+                                                </div>
+                                                <p class="card-text mr-5">
+                                                    <span style="font-weight: bold;">Durum:</span> @talk.State
+                                                </p>
+                                                <p class="card-text mb-3" style="font-weight: bold;">Açıklama:</p>
+                                                <p>@talk.Explanation</p>
+                                                <div class="btn-group">
+                                                    <a class="btn btn-warning" asp-action="UpdateTalk"
+                                                        asp-route-id="@talk.TalkId">
+                                                        <i class="fa-solid fa-pen-to-square"></i>
+                                                        Düzenle
+                                                    </a>
+                                                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@talk.TalkId">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                        Sil
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    body {
+        background: #f0f0f0;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    .mytabs {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 25px;
+    }
+
+    .mytabs input[type="radio"] {
+        display: none;
+    }
+
+    .mytabs label {
+        padding: 15px 25px;
+        background: #e2e2e2;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .mytabs .tab {
+        width: 100%;
+        padding: 20px;
+        background: #fff;
+        order: 1;
+        display: none;
+    }
+
+    .mytabs .tab h2 {
+        font-size: 2em;
+    }
+
+    .mytabs input[type='radio']:checked+label+.tab {
+        display: block;
+    }
+
+    .mytabs input[type="radio"]:checked+label {
+        background: #fff;
+        border-bottom: 2px solid #912c45;
+    }
+
+    .company-logo-container {
+        width: 300px;
+        height: 300px;
+        margin-left: 20px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .company-logo {
+        width: 90%;
+        height: 90%;
+        object-fit: cover;
+    }
+</style>

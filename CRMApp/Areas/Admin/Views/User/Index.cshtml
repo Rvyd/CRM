@@ -1,0 +1,62 @@
+@model IEnumerable<IdentityUser>
+
+<div class="text-center mb-4">
+    <h1 class="display-6" style="color:#992441">Kullanıcılar</h1>
+</div>
+  <div class="d-flex justify-content-end my-3">
+        <!--btn outline succes yeşil çizer üstüne gelince-->
+        <a class="btn btn-outline-success"style="background-color:#992441; color: white" asp-action="Create">
+            <i class="fa fa-plus"></i>
+           Ekle
+        </a>
+    </div>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        <thead style="background-color: #e26e8b; color: white;">
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>İletişim numarası</th>
+                <th>Adı</th>
+                <th>Rolleri</th>
+                <th>Operasyonlar</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var user in Model)
+            {
+                <tr>
+                    <td>@user.Id</td>
+                    <td>@user.Email</td>
+                    <td>@user.PhoneNumber</td>
+                    <td>@user.UserName</td>
+                    <td user-name="@user.UserName" user-role=""></td>
+                    <td>
+                        <div class="btn-group">
+                            <a class="btn btn-warning" asp-action="Update" asp-route-id="@user.UserName">
+                                <i class="fa fa-edit"></i>
+                                Update
+                            </a>
+                            <a class="btn btn-info" asp-action="ResetPassword" asp-route-id="@user.UserName">
+                                <i class="fa fa-key"></i>
+                                Reset Password
+                            </a>
+                            <form method="post" asp-action="DeleteUser">
+                                <input type="hidden" name="UserName" value="@user.UserName"/>
+                                <button type="submit" class="btn btn-danger">
+                                    <i class="fa fa-trash"></i>Delete</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<style>
+    .btn i {
+        margin-right: 5px;
+    }
+</style>

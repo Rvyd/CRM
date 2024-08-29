@@ -1,0 +1,39 @@
+@model IEnumerable<IdentityRole>
+
+<div class="text-center mb-4">
+    <h1 class="display-6" style="color:#992441">Role Tanımları</h1>
+</div>
+
+ <div class="d-flex justify-content-end my-3">
+        <!--btn outline succes yeşil çizer üstüne gelince-->
+        <a class="btn btn-outline-success" style="background-color:#992441; color: white" asp-action="AddRole">
+            <i class="fa fa-plus"></i>
+           Ekle
+        </a>
+    </div>
+
+<div class="row">
+    @foreach(var role in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h4 class="card-title mb-3" style="color:#992441; font-weight: bold;">@role.Name</h4>
+                   
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    .card {
+        border: 2px solid #992441;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+</style>

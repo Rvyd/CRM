@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FullCalendar Example</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    
+    <!-- FullCalendar CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/main.min.css" rel="stylesheet" />
+    
+    <!-- FullCalendar JS ve Locale -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+    <script src="wwwroot/fullcalendar-6.1.11/packages/core/locales-all.global.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                buttonText: {
+                    today: 'Bugün',
+                    month: 'Ay',
+                    week: 'Hafta',
+                    day: 'Gün',
+                    list: 'Liste'
+                },
+                initialDate: '2024-07-18',
+                locale: 'tr', // Türkçe dil ayarı
+                navLinks: true, // gün/hafta isimlerine tıklanabilir
+                selectable: true,
+                selectMirror: true,
+                select: function(arg) {
+                    var title = prompt('Etkinlik Başlığı:');
+                    if (title) {
+                        calendar.addEvent({
+                            title: title,
+                            start: arg.start,
+                            end: arg.end,
+                            allDay: arg.allDay
+                        });
+                    }
+                    calendar.unselect();
+                },
+                eventClick: function(arg) {
+                    
+                         var eventId = arg.event.id;
+                        window.location.href = '/Talk/Index/' ;
+                
+                },
+                editable: true,
+                dayMaxEvents: true, // fazla etkinlikler için "daha fazla" bağlantısını göster
+                events: "/api/talks",
+                eventContent: function(arg) {
+                    var contentEl = document.createElement('div');
+                    var titleEl = document.createElement('div');
+                    titleEl.innerHTML = arg.event.title
+                    contentEl.appendChild(titleEl);
+                    return { domNodes: [contentEl] };
+                }
+            });
+
+            calendar.render();
+        });
+    </script>
+
+</head>
+
+<body>
+    <div class="container">
+        <div id="calendar"></div>
+    </div>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
