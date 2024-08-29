@@ -65,18 +65,25 @@
 ###############################################################################
 # Language settings for GitHub language detection
 ###############################################################################
-# HTML files
-*.html linguist-language=HTML
+# Varsayılan olarak satır sonlarını otomatik olarak normalize et
+* text=auto
 
-# CSS files
-*.css linguist-language=CSS
+# HTML dosyaları dil analizi için kullanılabilir
+*.html linguist-detectable=true
 
-# JavaScript files
-*.js linguist-language=JavaScript
+# CSS dosyaları dil analizi için kullanılabilir
+*.css linguist-detectable=true
 
-# C# files
-*.cs linguist-language=CSharp
+# JavaScript dosyaları dil analizi için kullanılabilir
+*.js linguist-detectable=true
 
-# ASP.NET Core MVC files (Razor files and C# views)
-*.cshtml linguist-language=HTML
-*.razor linguist-language=HTML
+# C# dosyaları dil analizi için kullanılabilir
+*.cs linguist-detectable=true
+
+# ASP.NET Core MVC dosyaları (Razor ve C# view dosyaları) dil analizi için kullanılabilir
+*.cshtml linguist-detectable=true
+*.razor linguist-detectable=true
+
+# İstemediğiniz dosya türlerini dil analizinden hariç tutabilirsiniz
+*.md linguist-detectable=false
+*.txt linguist-detectable=false
